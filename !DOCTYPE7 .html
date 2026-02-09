@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brilliant Coaching Centre | Puabagan</title>
+    <style>
+        /* CSS Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #020617;
+            --card-bg: #0f172a;
+            --gold: #f5c542;
+            --gold-glow: rgba(245, 197, 66, 0.3);
+            --text: #e5e7eb;
+            --text-muted: #9ca3af;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #020617 0%, #0b1120 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3 { font-weight: 700; letter-spacing: 1px; }
+        .text-gold { color: var(--gold); }
+        .text-center { text-align: center; }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(245, 197, 66, 0.1);
+        }
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        nav a:hover { color: var(--gold); }
+
+        /* Hero Section */
+        header {
+            padding: 100px 20px 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(245, 197, 66, 0.08), transparent 60%);
+        }
+        h1 { 
+            font-size: 3.5rem; 
+            background: linear-gradient(to right, #fff, var(--gold), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .tagline { 
+            color: var(--text-muted); 
+            font-size: 1.3rem; 
+            max-width: 600px; 
+            margin: auto;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Cards & Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(245, 197, 66, 0.1);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--gold); 
+            box-shadow: 0 15px 40px var(--gold-glow);
+        }
+        .card h3 { color: #fff; margin-bottom: 15px; font-size: 1.5rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+        
+        /* List Styling */
+        .card ul { list-style: none; padding-left: 0; margin-top: 15px; }
+        .card ul li { 
+            margin-bottom: 12px; 
+            padding-left: 25px; 
+            position: relative; 
+            color: var(--text-muted);
+        }
+        .card ul li::before {
+            content: '✓';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Feature Icons (CSS Shapes) */
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(245, 197, 66, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--gold);
+            font-size: 24px;
+        }
+
+        /* Forms */
+        form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; }
+        input, select {
+            width: 100%;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 197, 66, 0.2);
+            background: #020617;
+            color: #fff;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+        button.submit-btn {
+            padding: 18px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--gold), #b38f00);
+            color: #020617;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        button.submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--gold-glow); }
+
+        /* Footer */
+        footer {
+            background: #01040f;
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(245, 197, 66, 0.1);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating Buttons */
+        .lang-switch {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background: var(--gold);
+            color: #020617;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 90;
+            border: none;
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #25D366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 90;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            nav { font-size: 0.75rem; gap: 15px; padding: 15px; }
+        }
+        
+        [data-lang="bn"] { display: none; }
+    </style>
+</head>
+<body>
+
+    <button class="lang-switch" onclick="toggleLang()">
+        <span data-lang="en">বাংলা</span>
+        <span data-lang="bn">English</span>
+    </button>
+
+    <a href="https://wa.me/919883448350" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c.93.576 1.674.921 2.838.921 3.162 0 5.751-2.586 5.751-5.766.001-3.181-2.589-5.769-5.783-5.769zm12 9.227c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-4.341-1.29c-.279-.142-1.644-.814-1.898-.908-.255-.093-.441-.14-.627.141-.186.281-.72 .908-.883 1.096-.163.189-.326.211-.605.071-2.454-1.229-4.043-3.08-4.508-3.904-.096-.164-.01-.253.125-.395.068-.071.149-.187.223-.281.081-.093.108-.159.162-.265.054-.105.027-.198-.014-.281-.041-.083-.372-.896-.51-1.227-.135-.323-.271-.278-.372-.284-.093-.005-.199-.004-.306-.004-.107 0-.279.041-.426.203-.147.163-.561.549-.561 1.34s.575 1.556.654 1.666c.079.11 2.246 3.486 5.485 4.846 2.073.87 2.872.684 3.407.604.887-.133 1.644-.672 1.876-1.32.232-.649.232-1.205.163-1.32-.069-.115-.255-.187-.534-.327z"/></svg>
+    </a>
+
+    <nav>
+        <a href="#about"><span data-lang="en">About</span><span data-lang="bn">আমাদের সম্পর্কে</span></a>
+        <a href="#features"><span data-lang="en">Why Us</span><span data-lang="bn">কেন আমরা</span></a>
+        <a href="#courses"><span data-lang="en">Courses</span><span data-lang="bn">কোর্সসমূহ</span></a>
+        <a href="#contact"><span data-lang="en">Contact</span><span data-lang="bn">যোগাযোগ</span></a>
+    </nav>
+
+    <header>
+        <h1>
+            <span data-lang="en">Brilliant Coaching Centre</span>
+            <span data-lang="bn">ব্রিলিয়ান্ট কোচিং সেন্টার</span>
+        </h1>
+        <div class="tagline">
+            <span data-lang="en">Unlock your true potential with guidance that inspires excellence.</span>
+            <span data-lang="bn">শ্রেষ্ঠত্বের লক্ষ্যে আপনার প্রকৃত সম্ভাবনা উন্মোচন করুন।</span>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">
+            <span data-lang="en">Shaping Futures in Puabagan</span>
+            <span data-lang="bn">পুয়াবাগানে ভবিষ্যৎ গড়ার কারিগর</span>
+        </h2>
+        <div style="text-align: center; max-width: 800px; margin: auto; font-size: 1.1rem; color: #ccc;">
+            <p data-lang="en">
+                At Brilliant Coaching Centre, we believe that every student has the potential to achieve greatness. 
+                Located in the heart of Bankura, we provide a disciplined yet nurturing environment where concepts become clear and confidence grows.
+            </p>
+            <p data-lang="bn">
+                ব্রিলিয়ান্ট কোচিং সেন্টারে আমরা বিশ্বাস করি যে প্রতিটি ছাত্রের মধ্যেই মহত্ত্ব অর্জনের সম্ভাবনা রয়েছে। 
+                বাঁকুড়ার প্রাণকেন্দ্রে অবস্থিত, আমরা এমন একটি সুশৃঙ্খল পরিবেশ প্রদান করি যেখানে ধারণাগুলি স্পষ্ট হয় এবং আত্মবিশ্বাস বৃদ্ধি পায়।
+            </p>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="grid">
+            <div class="card">
+                <div class="icon-box">🎓</div>
+                <h3>
+                    <span data-lang="en">Expert Guidance</span>
+                    <span data-lang="bn">অভিজ্ঞ নির্দেশিকা</span>
+                </h3>
+                <p data-lang="en">Learn from experienced educators like Abhijit Sir, Santanu Sir, and Sonali Mam who are dedicated to your success.</p>
+                <p data-lang="bn">অভিজিৎ স্যার, শান্তনু স্যার এবং সোনালী ম্যামের মতো অভিজ্ঞ শিক্ষকদের কাছ থেকে শিখুন।</p>
+            </div>
+            <div class="card">
+                <div class="icon-box">📈</div>
+                <h3>
+                    <span data-lang="en">Proven Results</span>
+                    <span data-lang="bn">প্রমাণিত ফলাফল</span>
+                </h3>
+                <p data-lang="en">Our focused approach in Mathematics and English ensures students consistently top their exams.</p>
+                <p data-lang="bn">গণিত এবং ইংরেজিতে আমাদের বিশেষ পদ্ধতি ছাত্রদের পরীক্ষায় ভালো ফলাফল নিশ্চিত করে।</p>
+            </div>
+            <div class="card">
+                <div class="icon-box">❤️</div>
+                <h3>
+                    <span data-lang="en">Personal Care</span>
+                    <span data-lang="bn">ব্যক্তিগত যত্ন</span>
+                </h3>
+                <p data-lang="en">Small batch sizes allow us to focus on every single student's weaknesses and turn them into strengths.</p>
+                <p data-lang="bn">ছোট ব্যাচ আমাদের প্রতিটি ছাত্রের দুর্বলতার দিকে নজর দিতে এবং তা শক্তিতে রূপান্তর করতে সাহায্য করে।</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <h2 class="section-title">
+            <span data-lang="en">Our Programs</span>
+            <span data-lang="bn">আমাদের প্রোগ্রামসমূহ</span>
+        </h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Foundation (LKG – IV)</h3>
+                <ul>
+                    <li><span data-lang="en">All Subjects Covered</span><span data-lang="bn">সমস্ত বিষয়</span></li>
+                    <li><span data-lang="en">Strong Base Building</span><span data-lang="bn">শক্তিশালী ভিত্তি গঠন</span></li>
+                    <li><span data-lang="en">Handwriting Improvement</span><span data-lang="bn">হাতের লেখা উন্নতি</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Senior (V – XII)</h3>
+                <ul>
+                    <li><span data-lang="en">English Specialization</span><span data-lang="bn">ইংরেজি স্পেশাল</span></li>
+                    <li><span data-lang="en">Grammar Mastery</span><span data-lang="bn">ব্যাকরণ আয়ত্ত</span></li>
+                    <li><span data-lang="en">Board Exam Prep</span><span data-lang="bn">বোর্ড পরীক্ষার প্রস্তুতি</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Math Mastery (IV – X)</h3>
+                <ul>
+                    <li><span data-lang="en">Special Math Classes</span><span data-lang="bn">গণিত স্পেশাল</span></li>
+                    <li><span data-lang="en">Shortcut Techniques</span><span data-lang="bn">শর্টকাট কৌশল</span></li>
+                    <li><span data-lang="en">Regular Mock Tests</span><span data-lang="bn">নিয়মিত মক টেস্ট</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">
+            <span data-lang="en">Join Us Today</span>
+            <span data-lang="bn">আজই যোগ দিন</span>
+        </h2>
+        
+        <div class="grid">
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 30px; margin-bottom: 10px;">📍</div>
+                <h3><span data-lang="en">Visit Us</span><span data-lang="bn">আমাদের ঠিকানা</span></h3>
+                <p>Puabagan, Bankura<br>(Near Testy Sweets)</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 30px; margin-bottom: 10px;">📞</div>
+                <h3><span data-lang="en">Call Us</span><span data-lang="bn">ফোন করুন</span></h3>
+                <p>9883448350<br>9735857573<br>8436529117</p>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="card">
+            <h3 class="text-center" style="margin-bottom: 20px;">
+                <span data-lang="en">Quick Admission Enquiry</span>
+                <span data-lang="bn">ভর্তির অনুসন্ধান</span>
+            </h3>
+            <form onsubmit="sendWhatsApp(event)">
+                <input type="text" id="name" placeholder="Student Name / ছাত্রের নাম" required>
+                <input type="text" id="cls" placeholder="Class / শ্রেণী" required>
+                <input type="tel" id="mobile" placeholder="Mobile Number / মোবাইল নম্বর" required>
+                <select id="subject">
+                    <option value="All Subjects">Foundation (LKG-IV)</option>
+                    <option value="English">English (V-XII)</option>
+                    <option value="Math">Math Special (IV-X)</option>
+                </select>
+                <button type="submit" class="submit-btn">
+                    <span data-lang="en">Send Message on WhatsApp</span>
+                    <span data-lang="bn">হোয়াটসঅ্যাপে বার্তা পাঠান</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <h3 class="text-gold">Brilliant Coaching Centre</h3>
+        <p style="margin-top: 10px;">© 2026. Excellence in Education.</p>
+    </footer>
+
+    <script>
+        let isEnglish = true;
+        function toggleLang() {
+            isEnglish = !isEnglish;
+            const enElements = document.querySelectorAll('[data-lang="en"]');
+            const bnElements = document.querySelectorAll('[data-lang="bn"]');
+            
+            if (isEnglish) {
+                enElements.forEach(el => el.style.display = 'inline');
+                bnElements.forEach(el => el.style.display = 'none');
+            } else {
+                enElements.forEach(el => el.style.display = 'none');
+                bnElements.forEach(el => el.style.display = 'inline');
+            }
+        }
+        
+        document.querySelectorAll('[data-lang="bn"]').forEach(el => el.style.display = 'none');
+
+        function sendWhatsApp(e) {
+            e.preventDefault();
+            let name = document.getElementById('name').value;
+            let cls = document.getElementById('cls').value;
+            let mobile = document.getElementById('mobile').value;
+            let subject = document.getElementById('subject').value;
+            
+            let msg = `*New Admission Enquiry*%0A------------------%0AName: ${name}%0AClass: ${cls}%0AMobile: ${mobile}%0ASubject: ${subject}`;
+            window.open('https://wa.me/919883448350?text=' + msg, '_blank');
+        }
+    </script>
+</body>
+</html>
